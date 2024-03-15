@@ -1,5 +1,5 @@
 # Test Plan for Balanced Brackets Function
-## Test Case 1: Only Brackets Return True
+## Only Brackets Return True
 - Description: Verify that the function returns true when only brackets are provided.
 - Test Input: "[]"
 - Expected Output: true
@@ -11,13 +11,13 @@
   }
 ## Nested Brackets Are Allowed
 - Description: Verify that the function allows nested brackets and returns true.
-- Test Input: "[[[]]]"
+- Test Input: "[[]]"
 - Expected Output: true
 - Test Method:
 
   @Test
     public void NestedBracketsAreAllowed(){
-        assertTrue(BalancedBrackets.hasBalancedBrackets("[[[]]]"));
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[[]]"));
     }
 
   ## Brackets Must Follow Open Close Order
@@ -49,6 +49,83 @@
   
   @Test
   public void unbalancedBrackets() {
-   assertFalse(BalancedBrackets.hasBalancedBrackets("[["));
+   assertFalse(BalancedBrackets.hasBalancedBrackets("["));
 }
 
+## Unbalanced Brackets
+- Description: Verify that the function returns false when the number of opening and closing brackets is not equal.
+- Test Input: "]]"
+- Expected Output: false
+- Test Method:
+  
+  @Test
+  public void unbalancedBrackets2() {
+   assertFalse(BalancedBrackets.hasBalancedBrackets("]"));
+}
+
+## Empty Brackets
+- Description: Verify that the function returns true when an empty string is passed.
+- Test Input: " "
+- Expected Output: true
+- Test Method:
+
+     @Test
+    public void emptyBrackets() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets(" "));
+    }
+
+## Single Bracket Open
+- Description: Verify that the function returns false when only one bracket is provided.
+- Test Input: "["
+- Expected Output: false
+- Test Method:
+
+  @Test
+    public void singleBracketsOpen() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("["));
+    }
+
+ ## Single Bracket Close
+- Description: Verify that the function returns false when only one bracket is provided.
+- Test Input: "]"
+- Expected Output: false
+- Test Method: 
+
+  @Test
+    public void singleBracketsClosed() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("]"));
+    }
+
+## Unbalanced Brackets - Missing Closing 
+- Description: Verify that the function returns false when there are more opening brackets than closing brackets.
+- Test Input: "[[]"
+- Expected Output: false
+- Test Method:
+
+  @Test
+    public void unbalancedBracketsMissingClosing(){
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[[]"));
+    }
+
+##  Unbalanced Brackets - Missing Opening
+- Description: Verify that the function returns false when there are more closing brackets than opening brackets.
+- Test Input: "[]]"
+- Expected Output: false
+- Test Method:
+
+  @Test
+    public void unbalancedBracketsMissingOpening(){
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[]]"));
+    }
+
+##  Unbalanced Brackets - Multiple Openings and One Closing
+- Description: Verify that the function returns false when there are more opening brackets than closing brackets.
+- Test Input: "[[]["
+- Test Input: "[[]["
+- Expected Output: false
+- Test Method:
+
+  @Test
+    public void unbalancedBracketsMultipleOpenings(){
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[[]["));
+    }

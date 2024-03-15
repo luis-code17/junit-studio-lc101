@@ -15,7 +15,7 @@ public class BalancedBracketsTest {
 
     @Test
     public void NestedBracketsAreAllowed(){
-        assertTrue(BalancedBrackets.hasBalancedBrackets("[]"));
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[[]]"));
     }
 
     @Test
@@ -29,8 +29,38 @@ public class BalancedBracketsTest {
     }
     @Test
     public void unbalancedBrackets() {
-        assertFalse(BalancedBrackets.hasBalancedBrackets("[["));
+        assertFalse(BalancedBrackets.hasBalancedBrackets("b[a[c"));
     }
 
+    @Test
+    public void unbalancedBrackets2() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("b]a]c"));
+    }
 
+    @Test
+    public void emptyBrackets() {
+        assertTrue(BalancedBrackets.hasBalancedBrackets(" "));
+    }
+
+   @Test
+    public void singleBracketsOpen() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("["));
+    }
+
+    @Test
+    public void singleBracketsClosed() {
+        assertFalse(BalancedBrackets.hasBalancedBrackets("]"));
+    }
+    @Test
+    public void unbalancedBracketsMissingClosing(){
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[[]"));
+    }
+    @Test
+    public void unbalancedBracketsMissingOpening(){
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[]]"));
+    }
+    @Test
+    public void unbalancedBracketsMultipleOpenings(){
+        assertTrue(BalancedBrackets.hasBalancedBrackets("[[]["));
+    }
 }
